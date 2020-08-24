@@ -1,0 +1,160 @@
+/*TODA AS DECLARAÇÕES EM CSS FEITAS ABAIXO ESTÃO BUSCANDO FAZER O PÁGINA SER RESPONSIVA EM DISPOSITIVOS MOBILE*/
+#page-landing {
+  /*essa variável está sendo reaproveitada do outro arquivo.css*/
+  background: var(--color-primary);
+}
+
+#page-landing #container {
+  color: var(--color-text-in-primary);
+}
+
+.logo-container img {
+  height: 10rem;
+}
+
+.logo-container{
+  /*alinhamento do texto*/
+  text-align: center;
+  margin-bottom: 3.2rem;
+}
+.logo-container h2 {
+  font-weight: 500;
+  font-size: 3.6rem;
+  line-height: 4.6rem;
+  margin-top: 0.8rem;
+}
+.hero-image {
+  width: 100%;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 3.2rem 0;
+}
+
+.buttons-container a {
+  /*estas declarações estão alterando os elementos "a" que estão na div que contém a class="buttons-container"*/
+
+  /*alteram a altura e largura dos elementos*/
+  width: 30rem;
+  height: 10.4rem;
+
+  /*alteram a borda e a margin(distância que os elementos "a" estão da imagem central)*/
+  border-radius: 0.8rem;
+  margin-right: 1.6rem;
+
+  /*aqui está sendo definido o "peso",tamanho e tipo da fonte*/
+  font: 700 2.4rem Archivo;
+
+  /*aqui estamos usando o flex-box, onde alinhamos os elementos do container no centro (justify-content alinhamento horizontal e 
+  align-items alianhamento vertical)
+  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /*aqui está sendo tirado a sublinhado dos links*/
+  text-decoration: none;
+
+  /*aqui estamos alterando a cor das letras do elemento "a"*/
+  color: var(--color-button-text);
+
+  /*essa é uma propriedade de transição, aqui está sendo passada que sempre que mudar o background em 1 segundo */
+  transition: background 0.2s;
+}
+/*no id="buttons-container" pegue o elemento "a" e procure todos os elementos "img" lá dentro */
+.buttons-container a img {
+/*a imagem ficará menor com essa largura*/
+ width: 4rem;
+ margin-right: 2.4rem;
+}
+
+.buttons-container a.study {
+  background: var(--color-primary-lighter)
+}
+
+/*aqui estamos aplicando uma pesudo-classe que altera o estado de determinado elemento,
+ nesse caso quando o mouse passar pelo elemento "a" que possue class="study" a cor do fundo será alterada */
+.buttons-container a.study:hover {
+
+  background: var(--color-primary-light);
+}
+
+/*o id=buttons-container acessa o elemento "a" que possue a classe="give-classes"*/
+.buttons-container a.give-classes{
+  background: var(--color-secondary);
+  margin-right:0;
+}
+
+/*aqui estamos aplicando uma pesudo-classe que altera o estado de determinado elemento,
+ nesse caso quando o mouse passar pelo elemento "a" que possue class="study" a cor do fundo será alterada */
+.buttons-container a.give-classes:hover {
+  background: var(--color-secondary-dark);
+}
+
+.total-connections {
+  font-size: 1.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.total-connections img {
+  /*aqui estamos separando o coração do texto*/
+  margin-left: 0.8rem;
+}
+
+/*AGORA VAMOS COMEÇAR A TRABALHAR COM A RESPONSIVIDADE PARA DESKTOPS*/
+@media (max-width:1100px) {
+  :root {
+    
+    font-size: 40%; /*modificar as medidas em rem, esse passo é importante para para a versão mobile*/
+}
+    .hero-image{
+      height: 45rem;
+    }
+
+}
+
+/*Vamos usar @media query que é uma regra CSS será aplicada somente quando cumprir o padrão que está estipulado entre (), 
+ou seja se a tela tiver tamanho de 1100px ela vai utilzar todas as declarações que estão entre as chaves*/
+@media(min-width:1100px) {
+  #page-landing #container {
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;/*criando as colunas*/
+    grid-template-rows: 350px 1fr;/*criando as linhas*/
+    grid-template-areas: /*posições estratégicas sendo criadas */
+    "proffy image image"/*vai ocupar a primeira linha de 350px*/
+     "button button texting";
+     column-gap: 87px;
+     row-gap: 86px;
+  }
+  .logo-container {
+    grid-area: proffy;
+    text-align: initial;
+    align-self: center;/*sem isso a imagem não iria respeitar as marcações do display grid*/
+    margin:0;
+  }
+
+  .logo-container img {
+    height: 127px;
+  }
+  .hero-image{
+    grid-area: image;
+    height: 350px;
+  }
+  .buttons-container{
+    grid-area: button;
+    justify-self: self-start;
+    margin:0;
+  }
+  .total-connections{
+    grid-area:texting;
+    justify-self: end;
+    font-size: 1.2rem;
+  }
+}
+
